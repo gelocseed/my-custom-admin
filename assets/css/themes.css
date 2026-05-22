@@ -1,0 +1,104 @@
+/**
+ * My Custom Admin - CSS Theme Variables
+ * Defines color tokens, layouts, and typography variables for Light, Dark, and System modes.
+ */
+
+:root {
+    /* 1. Shared variables */
+    --mcl-radius: 12px;
+    --mcl-radius-sm: 8px;
+    --mcl-radius-lg: 16px;
+    --mcl-blur: 12px;
+    --mcl-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --mcl-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    
+    /* 2. Light Theme (Default) */
+    --mcl-bg-main: #f4f6fa;
+    --mcl-bg-content: #ffffff;
+    --mcl-bg-panel: rgba(255, 255, 255, 0.75);
+    --mcl-bg-panel-solid: #ffffff;
+    --mcl-text-primary: #1e293b;
+    --mcl-text-secondary: #64748b;
+    --mcl-text-muted: #94a3b8;
+    --mcl-border-color: rgba(226, 232, 240, 0.8);
+    --mcl-border-color-solid: #e2e8f0;
+    
+    --mcl-accent-color: #4f46e5; /* Indigo */
+    --mcl-accent-hover: #4338ca;
+    --mcl-accent-bg: rgba(79, 70, 229, 0.08);
+    
+    --mcl-success: #10b981;
+    --mcl-warning: #f59e0b;
+    --mcl-danger: #ef4444;
+    
+    --mcl-shadow: 0 4px 20px -2px rgba(148, 163, 184, 0.12), 0 2px 8px -1px rgba(148, 163, 184, 0.08);
+    --mcl-shadow-lg: 0 10px 25px -5px rgba(148, 163, 184, 0.18), 0 8px 10px -6px rgba(148, 163, 184, 0.1);
+    
+    --mcl-menu-width: 240px;
+    --mcl-menu-padding: 16px;
+    --mcl-topbar-height: 56px;
+    
+    /* WordPress Admin Color Palette overrides */
+    --wp-admin-theme-color: var(--mcl-accent-color);
+    --wp-admin-theme-color-darker-10: var(--mcl-accent-hover);
+}
+
+/* Explicit Light Theme Class */
+body.mcl-theme-light {
+    --mcl-bg-main: #f4f6fa;
+    --mcl-bg-content: #ffffff;
+    --mcl-bg-panel: rgba(255, 255, 255, 0.75);
+    --mcl-bg-panel-solid: #ffffff;
+    --mcl-text-primary: #1e293b;
+    --mcl-text-secondary: #64748b;
+    --mcl-text-muted: #94a3b8;
+    --mcl-border-color: rgba(226, 232, 240, 0.8);
+    --mcl-border-color-solid: #e2e8f0;
+    --mcl-accent-color: #4f46e5;
+    --mcl-accent-hover: #4338ca;
+    --mcl-accent-bg: rgba(79, 70, 229, 0.08);
+    --mcl-shadow: 0 4px 20px -2px rgba(148, 163, 184, 0.12), 0 2px 8px -1px rgba(148, 163, 184, 0.08);
+    --mcl-shadow-lg: 0 10px 25px -5px rgba(148, 163, 184, 0.18), 0 8px 10px -6px rgba(148, 163, 184, 0.1);
+}
+
+/* Explicit Dark Theme Class */
+body.mcl-theme-dark {
+    --mcl-bg-main: #0b0f19;
+    --mcl-bg-content: #111827;
+    --mcl-bg-panel: rgba(17, 24, 39, 0.75);
+    --mcl-bg-panel-solid: #1f2937;
+    --mcl-text-primary: #f9fafb;
+    --mcl-text-secondary: #9ca3af;
+    --mcl-text-muted: #6b7280;
+    --mcl-border-color: rgba(55, 65, 81, 0.5);
+    --mcl-border-color-solid: #374151;
+    
+    --mcl-accent-color: #6366f1; /* Bright Indigo for Dark Mode */
+    --mcl-accent-hover: #818cf8;
+    --mcl-accent-bg: rgba(99, 102, 241, 0.12);
+    
+    --mcl-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4), 0 2px 8px -1px rgba(0, 0, 0, 0.2);
+    --mcl-shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+}
+
+/* System Theme prefers-color-scheme Support */
+@media (prefers-color-scheme: dark) {
+    body.mcl-theme-system {
+        --mcl-bg-main: #0b0f19;
+        --mcl-bg-content: #111827;
+        --mcl-bg-panel: rgba(17, 24, 39, 0.75);
+        --mcl-bg-panel-solid: #1f2937;
+        --mcl-text-primary: #f9fafb;
+        --mcl-text-secondary: #9ca3af;
+        --mcl-text-muted: #6b7280;
+        --mcl-border-color: rgba(55, 65, 81, 0.5);
+        --mcl-border-color-solid: #374151;
+        
+        --mcl-accent-color: #6366f1;
+        --mcl-accent-hover: #818cf8;
+        --mcl-accent-bg: rgba(99, 102, 241, 0.12);
+        
+        --mcl-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4), 0 2px 8px -1px rgba(0, 0, 0, 0.2);
+        --mcl-shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+    }
+}
