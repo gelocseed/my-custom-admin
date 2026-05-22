@@ -58,6 +58,12 @@ my-custom-admin/
 
 ## 🔄 Changelog
 
+### Version 1.0.3
+*   **🎨 Integrates Lucide SVG Icons**: Replaced default WordPress Dashicons in the sidebar menu with modern, crisp vector Lucide SVG icons (similar to shadcn/ui style).
+*   **🌗 Top Bar Theme Toggle Button**: Added a Sun/Moon theme switcher button directly in the WordPress Admin Bar (top-right side next to the user menu) that toggles themes instantly and saves choices persistently via AJAX.
+*   **📏 Strict Icon Spacing and Alignment**: Enforced strict left-alignment for all menu links and set a consistent `12px` gap between icons and text.
+*   **🌑 Dark Theme Table & Notice Overrides**: Eliminated hardcoded white row backgrounds in list tables (e.g. plugins page) and redesigned WordPress notice boxes (`.notice`) to adapt beautifully to dark mode.
+
 ### Version 1.0.2
 *   **🐛 Fixed Submenu Flicker**: Resolved the rapid jumping of submenus on expanded sidebar hover by restricting absolute position flyouts to collapsed (`.folded`) or inactive menus.
 *   **🎨 Flat Hover Refinements**: Removed all solid background fills on hover/active states of sidebar and admin bar navigation items, switching to a color-only font/stroke accentuation.
