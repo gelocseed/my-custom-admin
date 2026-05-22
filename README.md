@@ -4,57 +4,69 @@
 [![PHP Version](https://img.shields.io/badge/PHP-8.2%2B-blue.svg)](https://php.net)
 [![License](https://img.shields.io/badge/License-GPL%20v2%20or%20later-green.svg)](https://www.gnu.org/licenses/gpl-2.0.html)
 
-**My Custom Admin** — это современный, ультраминималистичный WordPress-плагин для полной кастомизации интерфейса панели управления (Dashboard). Разработанный как легковесная альтернатива плагину **UiPress**, он полностью переосмысляет стандартный дизайн админки WordPress 7.0+, предлагая чистый, изолированный интерфейс с эффектом размытия (glassmorphism), плавными микро-анимациями и скруглениями по последним гайдлайнам UI/UX.
+**My Custom Admin** is a modern, lightweight WordPress plugin designed to fully customize the administrative control panel (Dashboard). Serving as a high-performance alternative to **UiPress**, it replaces the default WordPress layout with a clean, containerized **App Shell Layout**, featuring flat panels, modern typography, and clean contrast controls.
 
 ---
 
-## 🚀 Основные возможности (Features)
+## 🚀 Key Features
 
-*   **📱 Floating Menu (Плавающее меню)**: Изолированный сайдбар с закруглениями (`border-radius: 12px`) и мягкими отступами от краев экрана, плавно адаптирующийся под свернутое (collapsed) состояние.
-*   **🔮 Glassmorphic Admin Bar**: Верхний бар с полупрозрачным фоном и размытием заднего плана (`backdrop-filter: blur(10px)`), придающий интерфейсу глубину.
-*   **🌗 Умное переключение тем (Light / Dark / System)**: Встроенная поддержка светлой и темной тем, а также автоматическая подстройка под системные предпочтения пользователя на лету с помощью CSS-переменных и плавных переходов.
-*   **🖼️ Брендирование (Custom Logo)**: Простая загрузка собственного логотипа для экрана авторизации (`wp-login.php`) и верхнего бара админки с помощью нативного WordPress Media Uploader.
-*   **🧱 Полная совместимость с конструктором Bricks**: Использование уникальных изолирующих CSS-селекторов и префиксов (например, `.mcl-`), чтобы исключить конфликты стилей с Bricks, Bricksforge, Bricksultimate и другими популярными плагинами.
-*   **🧹 Очистка рабочего пространства**: Возможность отключить стандартные виджеты WordPress на главной странице консоли («Быстрый черновик», «Активность» и др.) в один клик.
-
----
-
-## 🛠️ Системные требования
-
-*   **WordPress**: Версия `7.0` или выше
-*   **PHP**: Версия `8.2` или выше (строгая проверка при активации)
-*   **Совместимость с плагинами**: Протестировано с *Bricksforge, Bricksultimate, Clearfy Pro, WP Rocket, WPvivid Backup Pro*.
+*   **📱 App Shell Sidebar**: A flat, border-right aligned navigation sidebar that merges seamlessly with the page background, using a refined font weight (`400`/`500`) and thinner outline-style icons.
+*   **💳 Containerized Workspace**: The entire WordPress content area (`#wpbody-content`) is wrapped in a single, card-like tablet canvas featuring a `16px` border-radius, thin borders, soft shadow depth, and solid white/dark-graphite backings.
+*   **🔮 Flat Admin Bar**: A top navigation bar flush with the screen edges that acts as a flat extension of the dashboard, carrying an integrated custom brand logo.
+*   **🌗 On-the-Fly Theme Switcher (Light / Dark / System)**: Fully dynamic styling controlled by CSS custom properties and instant live-preview toggling before saving.
+*   **🖼️ Custom Login Branding**: Replaces the default `wp-login.php` interface with a centered minimalist container, custom brand logo support, and adaptive coloring matching the active theme.
+*   **🧱 Bricks Builder Compatibility**: Scoped styles using unique CSS prefixes (e.g. `.mcl-`) to guarantee 100% isolation from builder canvases (like Bricks, Bricksforge, and Bricksultimate).
+*   **🧹 Declutter Console**: Easily disable standard WordPress widgets (Welcome panel, Quick draft, Activity, etc.) with a single click.
 
 ---
 
-## 📦 Установка и активация
+## 🛠️ System Requirements
 
-1.  **Скачайте архив**: Скачайте файлы плагина и упакуйте папку `my-custom-admin` в ZIP-архив.
-2.  **Загрузите в WordPress**: Перейдите в раздел **Плагины ➔ Добавить новый ➔ Загрузить плагин** в панели управления вашим сайтом и выберите созданный ZIP-архив.
-    *   *Альтернативный способ*: Скопируйте папку `my-custom-admin` напрямую на ваш сервер в папку `/wp-content/plugins/`.
-3.  **Активируйте**: Перейдите в список плагинов и нажмите **Активировать** напротив плагина **My Custom Admin**.
-4.  **Настройте**: Перейдите в меню **Настройки ➔ Кастомная админка** для загрузки логотипа, выбора цветовой схемы и настройки внешнего вида.
+*   **WordPress**: Version `7.0` or higher
+*   **PHP**: Version `8.2` or higher (strictly enforced during runtime)
+*   **Plugin Compatibility**: Verified with *Bricksforge, Bricksultimate, Clearfy Pro, WP Rocket, WPvivid Backup Pro*.
 
 ---
 
-## ⚙️ Структура проекта
+## 📦 Installation & Activation
+
+1.  **Download the ZIP**: Pack the `my-custom-admin` folder into a ZIP archive.
+2.  **Upload to WordPress**: In your WordPress dashboard, navigate to **Plugins ➔ Add New ➔ Upload Plugin** and select the ZIP file.
+    *   *Manual method*: Extract the files and upload the `my-custom-admin` folder directly to `/wp-content/plugins/` via FTP.
+3.  **Activate**: Go to the **Plugins** menu and click **Activate** next to **My Custom Admin**.
+4.  **Configure**: Navigate to **Settings ➔ Кастомная админка** (Settings ➔ Custom Admin) to upload your logo and choose your interface theme.
+
+---
+
+## ⚙️ File Structure
 
 ```text
 my-custom-admin/
-├── my-custom-admin.php     # Главный файл инициализации, проверки требований и хуков
-├── README.md               # Документация плагина
+├── my-custom-admin.php     # Main entry file, requirements checker & enqueue scripts
+├── README.md               # English plugin documentation
 ├── includes/
-│   └── settings.php        # Класс настроек плагина с использованием Settings API
+│   └── settings.php        # WordPress Settings API screen and Media Uploader hooks
 └── assets/
     ├── css/
-    │   ├── admin-base.css  # Сетка, плавающее меню, стили шапки и экрана входа
-    │   └── themes.css      # CSS-переменные для светлой, темной и системной тем
+    │   ├── admin-base.css  # Layout grid, sidebar rules, card wrappers, login styling
+    │   └── themes.css      # Light, dark, and system theme variables
     └── js/
-        └── admin-core.js   # Live-переключение тем и интеграция с Media Library
+        └── admin-core.js   # Live theme preview class and media frame uploader events
 ```
 
 ---
 
-## 📄 Лицензия
+## 🔄 Changelog
 
-Этот плагин распространяется под лицензией GPL v2 или более поздней.
+### Version 1.0.1
+*   **🚀 Transitioned to App Shell Layout**: Replaced the floating macOS style with a flat container design. Both the top admin bar and the left sidebar now extend flush to the margins and merge with the background.
+*   **💳 Containerized Workspace Card**: Encapsulated the WordPress workspace area (`#wpbody-content`) in a beautiful tablet card featuring a `16px` border-radius, thin border outlines, and distinct white/dark-graphite backings.
+*   **🐛 Fixed Submenu Clipping**: Removed parent sidebar wrapper `overflow: hidden` rules that truncated native WordPress submenus.
+*   **🎨 Improved Hover States**: Modified sidebar list item hovers to force active text and outline icon colors to white (`#ffffff !important`) against the solid blue/indigo accent backgrounds.
+*   **👁️ Fly-out Dropdown Enhancements**: Added solid opaque backgrounds and clean shadow profiles to absolute fly-out menus to improve legibility against background tables.
+
+---
+
+## 📄 License
+
+Distributed under the GPL v2 or later License.

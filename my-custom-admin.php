@@ -1,13 +1,15 @@
 <?php
 /**
  * Plugin Name: My Custom Admin
- * Description: Modern custom WordPress Dashboard styling inspired by UiPress (minimalist, glassmorphism, floating menu).
- * Version: 1.0.0
- * Author: Antigravity
+ * Description: Modern custom WordPress Dashboard
+ * Version: 1.0.1
+ * Author: Oleg Desco
  * Requires at least: 6.0
  * Requires PHP: 8.2
  * Text Domain: my-custom-admin
  * License: GPL v2 or later
+ * GitHub Plugin URI: gelocseed/my-custom-admin
+ * Primary Branch: main
  */
 
 // Safety gate: Prevent direct file access
@@ -28,7 +30,7 @@ if ( version_compare( PHP_VERSION, '8.2', '<' ) ) {
 }
 
 // Define Constants
-define( 'MCL_VERSION', '1.0.0' );
+define( 'MCL_VERSION', '1.0.1' );
 define( 'MCL_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'MCL_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
