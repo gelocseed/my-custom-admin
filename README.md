@@ -58,6 +58,10 @@ my-custom-admin/
 
 ## 🔄 Changelog
 
+### Version 1.0.5
+*   **🌗 Improved Dark Mode Paragraph Contrast**: Swapped bright white text colors (`var(--mcl-text-primary)`) to a muted, user-friendly gray (`var(--mcl-text-secondary)`) on all general paragraph (`p`) and description tags to make reading much more comfortable.
+*   **📏 Fly-out Submenu Position Tuning**: Shifted sidebar fly-out submenus 10px closer to the sidebar in both folded and expanded states (reducing the gap and overlapping slightly), preventing accidental hover loss when moving the cursor.
+
 ### Version 1.0.4
 *   **📏 Sidebar Menu Spacing Refinement**: Adjusted padding for sidebar menu item labels (`.wp-menu-name`) to `8px 8px 8px 0px` for a perfectly balanced visual layout.
 *   **🐛 Custom Plugin Icons Conflict Resolution**: Enhanced custom icon checks in JavaScript to prevent replacing icons enqueued by plugins (e.g. Bricks Builder). Implemented scoped CSS targeting to only hide `:before` icons when replaced by Lucide, preserving custom SVG/font icons.

@@ -301,7 +301,7 @@ body.mcl-custom-admin.folded #adminmenu li.wp-has-submenu.hover .wp-submenu,
 body.mcl-custom-admin:not(.folded) #adminmenu li.wp-has-submenu:not(.wp-has-current-submenu):not(.wp-menu-open):hover .wp-submenu,
 body.mcl-custom-admin:not(.folded) #adminmenu li.wp-has-submenu:not(.wp-has-current-submenu):not(.wp-menu-open).hover .wp-submenu {
     position: absolute !important;
-    left: calc(var(--mcl-menu-width) - 10px) !important;
+    left: calc(var(--mcl-menu-width) - 30px) !important;
     top: 0 !important;
     background: var(--mcl-bg-panel-solid) !important; /* solid white / deep graphite */
     border: 1px solid var(--mcl-border-color) !important;
@@ -314,7 +314,23 @@ body.mcl-custom-admin:not(.folded) #adminmenu li.wp-has-submenu:not(.wp-has-curr
 
 body.mcl-custom-admin.folded #adminmenu li.wp-has-submenu:hover .wp-submenu,
 body.mcl-custom-admin.folded #adminmenu li.wp-has-submenu.hover .wp-submenu {
-    left: 64px !important;
+    left: 40px !important;
+}
+
+/* Hover bridge to prevent fly-out menu from disappearing when moving the cursor */
+body.mcl-custom-admin.folded #adminmenu li.wp-has-submenu:hover .wp-submenu::after,
+body.mcl-custom-admin.folded #adminmenu li.wp-has-submenu.hover .wp-submenu::after,
+body.mcl-custom-admin:not(.folded) #adminmenu li.wp-has-submenu:not(.wp-has-current-submenu):not(.wp-menu-open):hover .wp-submenu::after,
+body.mcl-custom-admin:not(.folded) #adminmenu li.wp-has-submenu:not(.wp-has-current-submenu):not(.wp-menu-open).hover .wp-submenu::after {
+    content: '' !important;
+    position: absolute !important;
+    top: -30px !important;
+    bottom: -30px !important;
+    left: -40px !important;
+    right: 0 !important;
+    z-index: -1 !important;
+    background: transparent !important;
+    display: block !important;
 }
 
 /* Submenu items styling (expanded menu) */
@@ -944,7 +960,6 @@ body.mcl-theme-dark .mcl-theme-toggle-icon .mcl-theme-icon-light {
    8. Global Dark Mode Text Color & UI Overrides
    ========================================================================== */
 body.mcl-custom-admin.mcl-theme-dark #wpbody,
-body.mcl-custom-admin.mcl-theme-dark #wpbody p,
 body.mcl-custom-admin.mcl-theme-dark #wpbody label,
 body.mcl-custom-admin.mcl-theme-dark #wpbody th,
 body.mcl-custom-admin.mcl-theme-dark #wpbody td,
@@ -963,11 +978,7 @@ body.mcl-custom-admin.mcl-theme-dark #wpbody textarea,
 body.mcl-custom-admin.mcl-theme-dark #wpbody input,
 body.mcl-custom-admin.mcl-theme-dark #wpbody code,
 body.mcl-custom-admin.mcl-theme-dark #wpbody pre,
-body.mcl-custom-admin.mcl-theme-dark #wpbody-content .description,
-body.mcl-custom-admin.mcl-theme-dark #wpbody-content p.description,
-body.mcl-custom-admin.mcl-theme-dark #wpbody-content span.description,
 body.mcl-custom-admin.mcl-theme-dark .wrap,
-body.mcl-custom-admin.mcl-theme-dark .wrap p,
 body.mcl-custom-admin.mcl-theme-dark .wrap label,
 body.mcl-custom-admin.mcl-theme-dark .wrap th,
 body.mcl-custom-admin.mcl-theme-dark .wrap td,
@@ -987,9 +998,18 @@ body.mcl-custom-admin.mcl-theme-dark #wpbody a:not(.button):not(.page-numbers):n
     color: var(--mcl-accent-hover) !important;
 }
 
+body.mcl-custom-admin.mcl-theme-dark p,
+body.mcl-custom-admin.mcl-theme-dark #wpbody p,
+body.mcl-custom-admin.mcl-theme-dark .wrap p,
+body.mcl-custom-admin.mcl-theme-dark .description,
+body.mcl-custom-admin.mcl-theme-dark p.description,
+body.mcl-custom-admin.mcl-theme-dark span.description,
 body.mcl-custom-admin.mcl-theme-dark #wpbody .description,
 body.mcl-custom-admin.mcl-theme-dark #wpbody p.description,
 body.mcl-custom-admin.mcl-theme-dark #wpbody span.description,
+body.mcl-custom-admin.mcl-theme-dark #wpbody-content .description,
+body.mcl-custom-admin.mcl-theme-dark #wpbody-content p.description,
+body.mcl-custom-admin.mcl-theme-dark #wpbody-content span.description,
 body.mcl-custom-admin.mcl-theme-dark #wpbody .text-muted,
 body.mcl-custom-admin.mcl-theme-dark #wpbody .help,
 body.mcl-custom-admin.mcl-theme-dark #wpbody .post-state {
@@ -1010,8 +1030,7 @@ body.mcl-custom-admin.mcl-theme-dark .nav-tab:hover {
 }
 
 @media (prefers-color-scheme: dark) {
-    body.mcl-custom-admin.mcl-theme-system #wpbody,
-    body.mcl-custom-admin.mcl-theme-system #wpbody p,
+        body.mcl-custom-admin.mcl-theme-system #wpbody,
     body.mcl-custom-admin.mcl-theme-system #wpbody label,
     body.mcl-custom-admin.mcl-theme-system #wpbody th,
     body.mcl-custom-admin.mcl-theme-system #wpbody td,
@@ -1030,11 +1049,7 @@ body.mcl-custom-admin.mcl-theme-dark .nav-tab:hover {
     body.mcl-custom-admin.mcl-theme-system #wpbody input,
     body.mcl-custom-admin.mcl-theme-system #wpbody code,
     body.mcl-custom-admin.mcl-theme-system #wpbody pre,
-    body.mcl-custom-admin.mcl-theme-system #wpbody-content .description,
-    body.mcl-custom-admin.mcl-theme-system #wpbody-content p.description,
-    body.mcl-custom-admin.mcl-theme-system #wpbody-content span.description,
     body.mcl-custom-admin.mcl-theme-system .wrap,
-    body.mcl-custom-admin.mcl-theme-system .wrap p,
     body.mcl-custom-admin.mcl-theme-system .wrap label,
     body.mcl-custom-admin.mcl-theme-system .wrap th,
     body.mcl-custom-admin.mcl-theme-system .wrap td,
@@ -1054,9 +1069,18 @@ body.mcl-custom-admin.mcl-theme-dark .nav-tab:hover {
         color: var(--mcl-accent-hover) !important;
     }
 
+    body.mcl-custom-admin.mcl-theme-system p,
+    body.mcl-custom-admin.mcl-theme-system #wpbody p,
+    body.mcl-custom-admin.mcl-theme-system .wrap p,
+    body.mcl-custom-admin.mcl-theme-system .description,
+    body.mcl-custom-admin.mcl-theme-system p.description,
+    body.mcl-custom-admin.mcl-theme-system span.description,
     body.mcl-custom-admin.mcl-theme-system #wpbody .description,
     body.mcl-custom-admin.mcl-theme-system #wpbody p.description,
     body.mcl-custom-admin.mcl-theme-system #wpbody span.description,
+    body.mcl-custom-admin.mcl-theme-system #wpbody-content .description,
+    body.mcl-custom-admin.mcl-theme-system #wpbody-content p.description,
+    body.mcl-custom-admin.mcl-theme-system #wpbody-content span.description,
     body.mcl-custom-admin.mcl-theme-system #wpbody .text-muted,
     body.mcl-custom-admin.mcl-theme-system #wpbody .help,
     body.mcl-custom-admin.mcl-theme-system #wpbody .post-state {

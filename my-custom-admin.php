@@ -2,7 +2,7 @@
 /**
  * Plugin Name: My Custom Admin
  * Description: Modern custom WordPress Dashboard
- * Version: 1.0.4
+ * Version: 1.0.5
  * Author: Oleg Desco
  * Requires at least: 6.0
  * Requires PHP: 8.2
@@ -30,7 +30,7 @@ if ( version_compare( PHP_VERSION, '8.2', '<' ) ) {
 }
 
 // Define Constants
-define( 'MCL_VERSION', '1.0.4' );
+define( 'MCL_VERSION', '1.0.5' );
 define( 'MCL_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'MCL_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
