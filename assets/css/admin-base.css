@@ -191,57 +191,77 @@ body.mcl-custom-admin #adminmenu a {
     border-radius: var(--mcl-radius-sm) !important;
     padding: 8px 12px !important;
     display: flex !important;
-    align-items: center;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 12px !important; /* Fixed distance between icon and text */
     transition: var(--mcl-transition);
+    background: transparent !important;
+    background-color: transparent !important;
 }
 
 body.mcl-custom-admin #adminmenu .wp-menu-image {
     display: flex !important;
-    align-items: center;
-    justify-content: center;
-    width: 24px !important;
-    height: 24px !important;
-    margin-right: 5px !important; /* Reduced margin */
+    align-items: center !important;
+    justify-content: center !important;
+    width: 18px !important;
+    height: 18px !important;
+    margin: 0 !important; /* reset margin-right */
     float: none !important;
+    flex-shrink: 0 !important;
 }
 
+/* Hide WordPress default dashicons for the admin menu */
 body.mcl-custom-admin #adminmenu div.wp-menu-image:before {
-    color: transparent !important;
-    -webkit-text-stroke: 1px var(--mcl-text-secondary) !important;
+    display: none !important;
+    content: none !important;
+}
+
+/* Style for Lucide SVG icons */
+body.mcl-custom-admin #adminmenu .mcl-lucide-icon {
+    width: 18px !important;
+    height: 18px !important;
+    stroke: var(--mcl-text-secondary) !important;
+    stroke-width: 1.75 !important;
+    fill: none !important;
     transition: var(--mcl-transition);
-    padding: 0 !important;
-    font-size: 17px !important; /* Slightly smaller for thin outline effect */
-    opacity: 0.8;
 }
 
-/* Hover and active states (no background color, only text/stroke turns into accent color) */
-body.mcl-custom-admin #adminmenu li > a:hover,
-body.mcl-custom-admin #adminmenu li:hover > a,
-body.mcl-custom-admin #adminmenu li.wp-has-current-submenu > a:hover,
+/* Hover, active, focus, and open states - NO background fills, only text/icon accent color */
+body.mcl-custom-admin #adminmenu li.menu-top:hover,
+body.mcl-custom-admin #adminmenu li.menu-top:hover > a,
+body.mcl-custom-admin #adminmenu li.menu-top.hover,
+body.mcl-custom-admin #adminmenu li.menu-top.hover > a,
+body.mcl-custom-admin #adminmenu li.menu-top a:hover,
+body.mcl-custom-admin #adminmenu li.menu-top a:focus,
+body.mcl-custom-admin #adminmenu li.opensub > a.menu-top,
+body.mcl-custom-admin #adminmenu li.wp-has-submenu:hover,
+body.mcl-custom-admin #adminmenu li.wp-has-submenu.hover,
+body.mcl-custom-admin #adminmenu li.wp-menu-open,
+body.mcl-custom-admin #adminmenu li.wp-menu-open > a,
+body.mcl-custom-admin #adminmenu li.wp-has-current-submenu.wp-menu-open,
+body.mcl-custom-admin #adminmenu li.wp-has-current-submenu.wp-menu-open > a,
+body.mcl-custom-admin #adminmenu li.wp-has-current-submenu:hover > a,
+body.mcl-custom-admin #adminmenu li.current,
 body.mcl-custom-admin #adminmenu li.current > a,
-body.mcl-custom-admin #adminmenu li.wp-has-current-submenu.wp-menu-open > a {
+body.mcl-custom-admin #adminmenu li.current:hover,
+body.mcl-custom-admin #adminmenu li.wp-has-current-submenu:not(.wp-menu-open) > a,
+body.mcl-custom-admin #adminmenu a.wp-has-current-submenu:hover,
+body.mcl-custom-admin #adminmenu li.wp-has-current-submenu:hover {
     background: transparent !important;
+    background-color: transparent !important;
     color: var(--mcl-accent-color) !important;
 }
 
-body.mcl-custom-admin #adminmenu li > a:hover div.wp-menu-image:before,
-body.mcl-custom-admin #adminmenu li:hover div.wp-menu-image:before,
-body.mcl-custom-admin #adminmenu li.wp-has-current-submenu > a:hover div.wp-menu-image:before,
-body.mcl-custom-admin #adminmenu li.current div.wp-menu-image:before,
-body.mcl-custom-admin #adminmenu li.wp-has-current-submenu.wp-menu-open div.wp-menu-image:before {
-    color: transparent !important;
-    -webkit-text-stroke-color: var(--mcl-accent-color) !important;
-}
-
-/* Collapsed active menu (not open but current parent) */
-body.mcl-custom-admin #adminmenu li.wp-has-current-submenu:not(.wp-menu-open) > a {
-    background: transparent !important;
-    color: var(--mcl-accent-color) !important;
-}
-
-body.mcl-custom-admin #adminmenu li.wp-has-current-submenu:not(.wp-menu-open) div.wp-menu-image:before {
-    color: transparent !important;
-    -webkit-text-stroke-color: var(--mcl-accent-color) !important;
+/* Trigger Lucide icon stroke change on hover, active and open states */
+body.mcl-custom-admin #adminmenu li.menu-top:hover .mcl-lucide-icon,
+body.mcl-custom-admin #adminmenu li.menu-top.hover .mcl-lucide-icon,
+body.mcl-custom-admin #adminmenu li.menu-top a:hover .mcl-lucide-icon,
+body.mcl-custom-admin #adminmenu li.menu-top a:focus .mcl-lucide-icon,
+body.mcl-custom-admin #adminmenu li.wp-menu-open .mcl-lucide-icon,
+body.mcl-custom-admin #adminmenu li.wp-has-current-submenu .mcl-lucide-icon,
+body.mcl-custom-admin #adminmenu li.current .mcl-lucide-icon,
+body.mcl-custom-admin #adminmenu li.wp-has-current-submenu:not(.wp-menu-open) > a .mcl-lucide-icon {
+    stroke: var(--mcl-accent-color) !important;
 }
 
 /* Sidebar top-level text transition and shift */
@@ -261,8 +281,11 @@ body.mcl-custom-admin.folded #adminmenu .wp-menu-name {
 }
 
 body.mcl-custom-admin.folded #adminmenu .wp-menu-image {
-    margin-right: 0 !important;
+    margin: 0 auto !important;
     width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
 }
 
 /* Fly-out submenus (folded state, hover fly-outs, etc.) with solid, opaque backgrounds and neat shadows */
@@ -289,8 +312,11 @@ body.mcl-custom-admin.folded #adminmenu li.wp-has-submenu.hover .wp-submenu {
 }
 
 /* Submenu items styling (expanded menu) */
-body.mcl-custom-admin #adminmenu .wp-submenu {
+body.mcl-custom-admin #adminmenu .wp-submenu,
+body.mcl-custom-admin #adminmenu .wp-has-current-submenu .wp-submenu,
+body.mcl-custom-admin #adminmenu .wp-submenu-wrap {
     background: transparent !important;
+    background-color: transparent !important;
     padding: 4px 0 4px 20px !important; /* Decreased indent for clean line */
     margin: 0 !important;
 }
@@ -305,12 +331,21 @@ body.mcl-custom-admin #adminmenu .wp-submenu a {
     font-weight: 400 !important;
     color: var(--mcl-text-secondary) !important;
     border-radius: var(--mcl-radius-sm) !important;
+    display: flex !important;
+    justify-content: flex-start !important;
+    text-align: left !important;
+    background: transparent !important;
+    background-color: transparent !important;
     transition: var(--mcl-transition);
 }
 
-body.mcl-custom-admin #adminmenu .wp-submenu a:hover {
+body.mcl-custom-admin #adminmenu .wp-submenu a:hover,
+body.mcl-custom-admin #adminmenu .wp-submenu a:focus,
+body.mcl-custom-admin #adminmenu .wp-submenu li.current a,
+body.mcl-custom-admin #adminmenu .wp-submenu li:hover a {
     color: var(--mcl-accent-color) !important;
     background: transparent !important;
+    background-color: transparent !important;
     padding-left: 17px !important; /* shift by 5px */
 }
 
@@ -448,7 +483,8 @@ body.mcl-custom-admin textarea:focus {
 }
 
 /* Data Tables */
-body.mcl-custom-admin .wp-list-table {
+body.mcl-custom-admin .wp-list-table,
+body.mcl-custom-admin table.widefat {
     background: var(--mcl-bg-content) !important;
     border: 1px solid var(--mcl-border-color) !important;
     border-radius: var(--mcl-radius) !important;
@@ -459,14 +495,87 @@ body.mcl-custom-admin .wp-list-table {
 }
 
 body.mcl-custom-admin .wp-list-table th, 
-body.mcl-custom-admin .wp-list-table td {
+body.mcl-custom-admin .wp-list-table td,
+body.mcl-custom-admin table.widefat th,
+body.mcl-custom-admin table.widefat td {
     border-bottom: 1px solid var(--mcl-border-color) !important;
     padding: 12px 16px !important;
 }
 
-body.mcl-custom-admin .wp-list-table thead th {
+body.mcl-custom-admin .wp-list-table thead th,
+body.mcl-custom-admin table.widefat thead th {
     background-color: var(--mcl-bg-main) !important;
     font-weight: 600 !important;
+    color: var(--mcl-text-primary) !important;
+}
+
+/* Row-level overrides to prevent hardcoded white backgrounds in dark theme */
+body.mcl-custom-admin .wp-list-table tbody tr,
+body.mcl-custom-admin table.widefat tbody tr,
+body.mcl-custom-admin .plugins tr.active td,
+body.mcl-custom-admin .plugins tr.active th,
+body.mcl-custom-admin .plugins tr.inactive td,
+body.mcl-custom-admin .plugins tr.inactive th,
+body.mcl-custom-admin .plugin-update-tr td,
+body.mcl-custom-admin tr.active td,
+body.mcl-custom-admin tr.active th,
+body.mcl-custom-admin tr.inactive td,
+body.mcl-custom-admin tr.inactive th,
+body.mcl-custom-admin .alternate,
+body.mcl-custom-admin .striped tbody > :nth-child(odd),
+body.mcl-custom-admin .striped tbody > :nth-child(odd) td,
+body.mcl-custom-admin .striped tbody > :nth-child(odd) th {
+    background: var(--mcl-bg-content) !important;
+    background-color: var(--mcl-bg-content) !important;
+    color: var(--mcl-text-primary) !important;
+}
+
+/* Ensure borders are styled properly */
+body.mcl-custom-admin .plugins tr.active td,
+body.mcl-custom-admin .plugins tr.active th {
+    border-left: 4px solid var(--mcl-accent-color) !important;
+}
+
+/* Modern styling for WordPress Admin notices in dark/light mode */
+body.mcl-custom-admin .notice,
+body.mcl-custom-admin div.updated,
+body.mcl-custom-admin div.error,
+body.mcl-custom-admin div.notice-info {
+    background: var(--mcl-bg-content) !important;
+    color: var(--mcl-text-primary) !important;
+    border: 1px solid var(--mcl-border-color) !important;
+    border-left-width: 4px !important;
+    border-radius: var(--mcl-radius-sm) !important;
+    box-shadow: var(--mcl-shadow) !important;
+    padding: 12px 18px !important;
+    margin: 15px 0 !important;
+}
+
+body.mcl-custom-admin .notice-success,
+body.mcl-custom-admin div.updated {
+    border-left: 4px solid var(--mcl-success) !important;
+}
+
+body.mcl-custom-admin .notice-warning {
+    border-left: 4px solid var(--mcl-warning) !important;
+}
+
+body.mcl-custom-admin .notice-error,
+body.mcl-custom-admin div.error {
+    border-left: 4px solid var(--mcl-danger) !important;
+}
+
+body.mcl-custom-admin .notice a,
+body.mcl-custom-admin div.updated a,
+body.mcl-custom-admin div.error a {
+    color: var(--mcl-accent-color) !important;
+    text-decoration: underline;
+}
+
+body.mcl-custom-admin .notice a:hover,
+body.mcl-custom-admin div.updated a:hover,
+body.mcl-custom-admin div.error a:hover {
+    color: var(--mcl-accent-hover) !important;
 }
 
 /* ==========================================================================
@@ -754,4 +863,66 @@ body.login.mcl-custom-admin .privacy-policy-page-link {
 
 body.login.mcl-custom-admin .privacy-policy-page-link a {
     color: var(--mcl-text-muted) !important;
+}
+
+/* ==========================================================================
+   7. Theme Toggle Button Styling (Admin Bar Integration)
+   ========================================================================== */
+#wpadminbar #wp-admin-bar-mcl-theme-toggle {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.mcl-theme-toggle-icon {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 20px !important;
+    height: 20px !important;
+    cursor: pointer !important;
+}
+
+.mcl-theme-toggle-icon svg {
+    width: 18px !important;
+    height: 18px !important;
+    stroke-width: 2 !important;
+    fill: none !important;
+    transition: var(--mcl-transition) !important;
+}
+
+/* Light theme / system theme defaults: show moon (dark mode toggle) */
+body.mcl-theme-light .mcl-theme-toggle-icon .mcl-theme-icon-light,
+body:not(.mcl-theme-dark):not(.mcl-theme-system) .mcl-theme-toggle-icon .mcl-theme-icon-light {
+    display: none !important;
+}
+body.mcl-theme-light .mcl-theme-toggle-icon .mcl-theme-icon-dark,
+body:not(.mcl-theme-dark):not(.mcl-theme-system) .mcl-theme-toggle-icon .mcl-theme-icon-dark {
+    display: inline-block !important;
+}
+
+/* Dark theme: show sun (light mode toggle) */
+body.mcl-theme-dark .mcl-theme-toggle-icon .mcl-theme-icon-dark {
+    display: none !important;
+}
+body.mcl-theme-dark .mcl-theme-toggle-icon .mcl-theme-icon-light {
+    display: inline-block !important;
+}
+
+/* System theme prefers-color-scheme media overrides */
+@media (prefers-color-scheme: dark) {
+    body.mcl-theme-system .mcl-theme-toggle-icon .mcl-theme-icon-dark {
+        display: none !important;
+    }
+    body.mcl-theme-system .mcl-theme-toggle-icon .mcl-theme-icon-light {
+        display: inline-block !important;
+    }
+}
+@media (prefers-color-scheme: light) {
+    body.mcl-theme-system .mcl-theme-toggle-icon .mcl-theme-icon-light {
+        display: none !important;
+    }
+    body.mcl-theme-system .mcl-theme-toggle-icon .mcl-theme-icon-dark {
+        display: inline-block !important;
+    }
 }

@@ -52,8 +52,11 @@ add_action( 'admin_enqueue_scripts', function( $hook ) {
     // 2. Base structural CSS
     wp_enqueue_style( 'mcl-admin-base', MCL_PLUGIN_URL . 'assets/css/admin-base.css', [ 'mcl-themes' ], MCL_VERSION );
 
+    // Lucide Icons CDN script
+    wp_enqueue_script( 'lucide-icons', 'https://unpkg.com/lucide@0.473.0/dist/umd/lucide.min.js', [], '0.473.0', true );
+
     // 3. Core JavaScript (theme switching, media uploader, animations)
-    wp_enqueue_script( 'mcl-admin-core', MCL_PLUGIN_URL . 'assets/js/admin-core.js', [ 'jquery' ], MCL_VERSION, true );
+    wp_enqueue_script( 'mcl-admin-core', MCL_PLUGIN_URL . 'assets/js/admin-core.js', [ 'jquery', 'lucide-icons' ], MCL_VERSION, true );
 
     // Localize theme option for live JS toggling if needed
     $options = get_option( 'mcl_custom_admin_settings', [] );
@@ -158,6 +161,18 @@ add_action( 'wp_before_admin_bar_render', function() {
             ],
         ] );
     }
+
+    // Add theme toggle node to the top bar (placed on the right side next to the user profile menu)
+    $wp_admin_bar->add_menu( [
+        'id'     => 'mcl-theme-toggle',
+        'parent' => 'top-secondary',
+        'title'  => '<span class="ab-icon mcl-theme-toggle-icon"><i data-lucide="moon" class="mcl-theme-icon-dark"></i><i data-lucide="sun" class="mcl-theme-icon-light"></i></span>',
+        'href'   => '#',
+        'meta'   => [
+            'title' => __( 'Переключить тему', 'my-custom-admin' ),
+            'class' => 'mcl-theme-toggle-node',
+        ],
+    ] );
 } );
 
 /**
@@ -176,3 +191,23 @@ add_action( 'wp_dashboard_setup', function() {
         remove_action( 'welcome_panel', 'wp_welcome_panel' );              // Welcome Panel
     }
 }, 999 );
+
+/**
+ * AJAX endpoint to save theme changes dynamically from the top bar switcher
+ */
+add_action( 'wp_ajax_mcl_save_theme', function() {
+    // Check permission
+    if ( ! current_user_can( 'read' ) ) {
+        wp_send_json_error( 'Forbidden', 403 );
+    }
+    
+    $theme = isset( $_POST['theme'] ) ? sanitize_text_field( $_POST['theme'] ) : 'system';
+    if ( in_array( $theme, [ 'light', 'dark', 'system' ], true ) ) {
+        $options = get_option( 'mcl_custom_admin_settings', [] );
+        $options['theme'] = $theme;
+        update_option( 'mcl_custom_admin_settings', $options );
+        wp_send_json_success();
+    } else {
+        wp_send_json_error( 'Invalid theme' );
+    }
+} );
