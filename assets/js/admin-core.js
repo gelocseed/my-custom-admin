@@ -145,6 +145,73 @@ jQuery(document).ready(function($) {
         var $imgDiv = $li.find('.wp-menu-image');
         if (!$imgDiv.length) return;
 
+        // Skip items that have custom icons from plugins (e.g. Bricks Builder)
+        // 1. If it has a Bricks Builder ID or class
+        var idAttr = $li.attr('id');
+        if (idAttr && idAttr.toLowerCase().indexOf('bricks') !== -1) {
+            return;
+        }
+
+        // 2. If it contains an <img> tag (common for custom images/SVG icons)
+        if ($imgDiv.find('img').length > 0) {
+            return;
+        }
+        // 3. If it contains custom SVG elements (unless they are our Lucide placeholders)
+        if ($imgDiv.find('svg').length > 0 && !$imgDiv.find('.mcl-lucide-icon').length) {
+            return;
+        }
+        // 4. If it has a custom background image (inline style or class 'svg')
+        if ($imgDiv.hasClass('svg') || ($imgDiv.css('background-image') && $imgDiv.css('background-image') !== 'none')) {
+            return;
+        }
+
+        // 5. Inspect computed style of ::before pseudo-element and the element itself to detect custom icons/fonts
+        if (window.getComputedStyle) {
+            var compStyle = window.getComputedStyle($imgDiv[0]);
+            var bgImg = compStyle.getPropertyValue('background-image');
+            if (bgImg && bgImg !== 'none') {
+                return;
+            }
+
+            var beforeStyle = window.getComputedStyle($imgDiv[0], '::before');
+            if (beforeStyle) {
+                var beforeBg = beforeStyle.getPropertyValue('background-image');
+                if (beforeBg && beforeBg !== 'none') {
+                    return;
+                }
+                var beforeFont = beforeStyle.getPropertyValue('font-family');
+                if (beforeFont) {
+                    var cleanFont = beforeFont.replace(/['"]/g, '').trim().toLowerCase();
+                    // If there's a custom font family (other than dashicons, lucide, inherit, initial, unset)
+                    if (cleanFont && cleanFont !== 'dashicons' && cleanFont !== 'lucide' && cleanFont !== 'inherit' && cleanFont !== 'initial' && cleanFont !== 'unset') {
+                        return;
+                    }
+                }
+                var beforeContent = beforeStyle.getPropertyValue('content');
+                if (beforeContent && beforeContent !== 'none' && beforeContent !== 'normal' && beforeContent !== '""' && beforeContent !== "''") {
+                    if (beforeContent.indexOf('url(') !== -1) {
+                        return;
+                    }
+                }
+            }
+        }
+
+        // 6. If it has custom non-dashicons icon font classes (must have a class starting with 'dashicons-')
+        var hasDashiconClass = false;
+        var classAttr = $imgDiv.attr('class');
+        if (classAttr) {
+            var classes = classAttr.split(/\s+/);
+            $.each(classes, function(index, cls) {
+                if (cls.indexOf('dashicons-') === 0) {
+                    hasDashiconClass = true;
+                    return false; // Break $.each
+                }
+            });
+        }
+        if (!hasDashiconClass) {
+            return; // It's a custom icon font or custom styled item, skip it
+        }
+
         var iconName = null;
 
         // Try mapping from the dashicon class on .wp-menu-image
@@ -182,8 +249,8 @@ jQuery(document).ready(function($) {
             iconName = 'box';
         }
 
-        // Empty the default Dashicon markup and replace it with a Lucide placeholder icon
-        $imgDiv.empty().html('<i data-lucide="' + iconName + '" class="mcl-lucide-icon"></i>');
+        // Empty the default Dashicon markup and replace it with a Lucide placeholder icon and add helper class
+        $imgDiv.empty().html('<i data-lucide="' + iconName + '" class="mcl-lucide-icon"></i>').addClass('mcl-lucide-replaced');
     });
 
     // Initialize Lucide icons if the library is loaded

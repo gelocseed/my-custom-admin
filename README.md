@@ -58,6 +58,11 @@ my-custom-admin/
 
 ## 🔄 Changelog
 
+### Version 1.0.4
+*   **📏 Sidebar Menu Spacing Refinement**: Adjusted padding for sidebar menu item labels (`.wp-menu-name`) to `8px 8px 8px 0px` for a perfectly balanced visual layout.
+*   **🐛 Custom Plugin Icons Conflict Resolution**: Enhanced custom icon checks in JavaScript to prevent replacing icons enqueued by plugins (e.g. Bricks Builder). Implemented scoped CSS targeting to only hide `:before` icons when replaced by Lucide, preserving custom SVG/font icons.
+*   **🌗 Robust Dark Mode Contrast**: Injected comprehensive dark theme CSS overrides to ensure labels, descriptions, links, table headers/cells, and tabs remain fully readable in dark and system-dark states.
+
 ### Version 1.0.3
 *   **🎨 Integrates Lucide SVG Icons**: Replaced default WordPress Dashicons in the sidebar menu with modern, crisp vector Lucide SVG icons (similar to shadcn/ui style).
 *   **🌗 Top Bar Theme Toggle Button**: Added a Sun/Moon theme switcher button directly in the WordPress Admin Bar (top-right side next to the user menu) that toggles themes instantly and saves choices persistently via AJAX.

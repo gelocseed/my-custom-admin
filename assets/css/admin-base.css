@@ -200,18 +200,21 @@ body.mcl-custom-admin #adminmenu a {
 }
 
 body.mcl-custom-admin #adminmenu .wp-menu-image {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    width: 18px !important;
-    height: 18px !important;
     margin: 0 !important; /* reset margin-right */
     float: none !important;
     flex-shrink: 0 !important;
 }
 
-/* Hide WordPress default dashicons for the admin menu */
-body.mcl-custom-admin #adminmenu div.wp-menu-image:before {
+body.mcl-custom-admin #adminmenu .wp-menu-image.mcl-lucide-replaced {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 18px !important;
+    height: 18px !important;
+}
+
+/* Hide WordPress default dashicons for the admin menu ONLY if replaced by Lucide */
+body.mcl-custom-admin #adminmenu div.mcl-lucide-replaced:before {
     display: none !important;
     content: none !important;
 }
@@ -265,9 +268,12 @@ body.mcl-custom-admin #adminmenu li.wp-has-current-submenu:not(.wp-menu-open) > 
 }
 
 /* Sidebar top-level text transition and shift */
-body.mcl-custom-admin #adminmenu li a .wp-menu-name {
+body.mcl-custom-admin #adminmenu li a .wp-menu-name,
+body.mcl-custom-admin #adminmenu div.wp-menu-name,
+body.mcl-custom-admin #adminmenu span.wp-menu-name {
     display: inline-block !important;
     transition: var(--mcl-transition) !important;
+    padding: 8px 8px 8px 0px !important;
 }
 
 body.mcl-custom-admin #adminmenu li > a:hover .wp-menu-name,
@@ -520,13 +526,20 @@ body.mcl-custom-admin .plugin-update-tr td,
 body.mcl-custom-admin tr.active td,
 body.mcl-custom-admin tr.active th,
 body.mcl-custom-admin tr.inactive td,
-body.mcl-custom-admin tr.inactive th,
+body.mcl-custom-admin tr.inactive th {
+    background: var(--mcl-bg-content) !important;
+    background-color: var(--mcl-bg-content) !important;
+    color: var(--mcl-text-primary) !important;
+}
+
 body.mcl-custom-admin .alternate,
+body.mcl-custom-admin .alternate td,
+body.mcl-custom-admin .alternate th,
 body.mcl-custom-admin .striped tbody > :nth-child(odd),
 body.mcl-custom-admin .striped tbody > :nth-child(odd) td,
 body.mcl-custom-admin .striped tbody > :nth-child(odd) th {
-    background: var(--mcl-bg-content) !important;
-    background-color: var(--mcl-bg-content) !important;
+    background: var(--mcl-bg-main) !important;
+    background-color: var(--mcl-bg-main) !important;
     color: var(--mcl-text-primary) !important;
 }
 
@@ -924,5 +937,142 @@ body.mcl-theme-dark .mcl-theme-toggle-icon .mcl-theme-icon-light {
     }
     body.mcl-theme-system .mcl-theme-toggle-icon .mcl-theme-icon-dark {
         display: inline-block !important;
+    }
+}
+
+/* ==========================================================================
+   8. Global Dark Mode Text Color & UI Overrides
+   ========================================================================== */
+body.mcl-custom-admin.mcl-theme-dark #wpbody,
+body.mcl-custom-admin.mcl-theme-dark #wpbody p,
+body.mcl-custom-admin.mcl-theme-dark #wpbody label,
+body.mcl-custom-admin.mcl-theme-dark #wpbody th,
+body.mcl-custom-admin.mcl-theme-dark #wpbody td,
+body.mcl-custom-admin.mcl-theme-dark #wpbody h1,
+body.mcl-custom-admin.mcl-theme-dark #wpbody h2,
+body.mcl-custom-admin.mcl-theme-dark #wpbody h3,
+body.mcl-custom-admin.mcl-theme-dark #wpbody h4,
+body.mcl-custom-admin.mcl-theme-dark #wpbody h5,
+body.mcl-custom-admin.mcl-theme-dark #wpbody h6,
+body.mcl-custom-admin.mcl-theme-dark #wpbody span:not(.ab-icon):not(.mcl-lucide-icon):not(.dashicons),
+body.mcl-custom-admin.mcl-theme-dark #wpbody li,
+body.mcl-custom-admin.mcl-theme-dark #wpbody strong,
+body.mcl-custom-admin.mcl-theme-dark #wpbody em,
+body.mcl-custom-admin.mcl-theme-dark #wpbody select,
+body.mcl-custom-admin.mcl-theme-dark #wpbody textarea,
+body.mcl-custom-admin.mcl-theme-dark #wpbody input,
+body.mcl-custom-admin.mcl-theme-dark #wpbody code,
+body.mcl-custom-admin.mcl-theme-dark #wpbody pre,
+body.mcl-custom-admin.mcl-theme-dark #wpbody-content .description,
+body.mcl-custom-admin.mcl-theme-dark #wpbody-content p.description,
+body.mcl-custom-admin.mcl-theme-dark #wpbody-content span.description,
+body.mcl-custom-admin.mcl-theme-dark .wrap,
+body.mcl-custom-admin.mcl-theme-dark .wrap p,
+body.mcl-custom-admin.mcl-theme-dark .wrap label,
+body.mcl-custom-admin.mcl-theme-dark .wrap th,
+body.mcl-custom-admin.mcl-theme-dark .wrap td,
+body.mcl-custom-admin.mcl-theme-dark .postbox,
+body.mcl-custom-admin.mcl-theme-dark .postbox-header h2,
+body.mcl-custom-admin.mcl-theme-dark .metabox-holder,
+body.mcl-custom-admin.mcl-theme-dark .tablenav .displaying-num,
+body.mcl-custom-admin.mcl-theme-dark .tablenav .total-pages {
+    color: var(--mcl-text-primary) !important;
+}
+
+body.mcl-custom-admin.mcl-theme-dark #wpbody a:not(.button):not(.page-numbers):not(.nav-tab):not(.row-actions a) {
+    color: var(--mcl-accent-color) !important;
+}
+
+body.mcl-custom-admin.mcl-theme-dark #wpbody a:not(.button):not(.page-numbers):not(.nav-tab):not(.row-actions a):hover {
+    color: var(--mcl-accent-hover) !important;
+}
+
+body.mcl-custom-admin.mcl-theme-dark #wpbody .description,
+body.mcl-custom-admin.mcl-theme-dark #wpbody p.description,
+body.mcl-custom-admin.mcl-theme-dark #wpbody span.description,
+body.mcl-custom-admin.mcl-theme-dark #wpbody .text-muted,
+body.mcl-custom-admin.mcl-theme-dark #wpbody .help,
+body.mcl-custom-admin.mcl-theme-dark #wpbody .post-state {
+    color: var(--mcl-text-secondary) !important;
+}
+
+body.mcl-custom-admin.mcl-theme-dark .nav-tab {
+    background: var(--mcl-bg-main) !important;
+    border-color: var(--mcl-border-color) !important;
+    color: var(--mcl-text-secondary) !important;
+}
+
+body.mcl-custom-admin.mcl-theme-dark .nav-tab-active,
+body.mcl-custom-admin.mcl-theme-dark .nav-tab:hover {
+    background: var(--mcl-bg-content) !important;
+    color: var(--mcl-text-primary) !important;
+    border-bottom-color: var(--mcl-bg-content) !important;
+}
+
+@media (prefers-color-scheme: dark) {
+    body.mcl-custom-admin.mcl-theme-system #wpbody,
+    body.mcl-custom-admin.mcl-theme-system #wpbody p,
+    body.mcl-custom-admin.mcl-theme-system #wpbody label,
+    body.mcl-custom-admin.mcl-theme-system #wpbody th,
+    body.mcl-custom-admin.mcl-theme-system #wpbody td,
+    body.mcl-custom-admin.mcl-theme-system #wpbody h1,
+    body.mcl-custom-admin.mcl-theme-system #wpbody h2,
+    body.mcl-custom-admin.mcl-theme-system #wpbody h3,
+    body.mcl-custom-admin.mcl-theme-system #wpbody h4,
+    body.mcl-custom-admin.mcl-theme-system #wpbody h5,
+    body.mcl-custom-admin.mcl-theme-system #wpbody h6,
+    body.mcl-custom-admin.mcl-theme-system #wpbody span:not(.ab-icon):not(.mcl-lucide-icon):not(.dashicons),
+    body.mcl-custom-admin.mcl-theme-system #wpbody li,
+    body.mcl-custom-admin.mcl-theme-system #wpbody strong,
+    body.mcl-custom-admin.mcl-theme-system #wpbody em,
+    body.mcl-custom-admin.mcl-theme-system #wpbody select,
+    body.mcl-custom-admin.mcl-theme-system #wpbody textarea,
+    body.mcl-custom-admin.mcl-theme-system #wpbody input,
+    body.mcl-custom-admin.mcl-theme-system #wpbody code,
+    body.mcl-custom-admin.mcl-theme-system #wpbody pre,
+    body.mcl-custom-admin.mcl-theme-system #wpbody-content .description,
+    body.mcl-custom-admin.mcl-theme-system #wpbody-content p.description,
+    body.mcl-custom-admin.mcl-theme-system #wpbody-content span.description,
+    body.mcl-custom-admin.mcl-theme-system .wrap,
+    body.mcl-custom-admin.mcl-theme-system .wrap p,
+    body.mcl-custom-admin.mcl-theme-system .wrap label,
+    body.mcl-custom-admin.mcl-theme-system .wrap th,
+    body.mcl-custom-admin.mcl-theme-system .wrap td,
+    body.mcl-custom-admin.mcl-theme-system .postbox,
+    body.mcl-custom-admin.mcl-theme-system .postbox-header h2,
+    body.mcl-custom-admin.mcl-theme-system .metabox-holder,
+    body.mcl-custom-admin.mcl-theme-system .tablenav .displaying-num,
+    body.mcl-custom-admin.mcl-theme-system .tablenav .total-pages {
+        color: var(--mcl-text-primary) !important;
+    }
+
+    body.mcl-custom-admin.mcl-theme-system #wpbody a:not(.button):not(.page-numbers):not(.nav-tab):not(.row-actions a) {
+        color: var(--mcl-accent-color) !important;
+    }
+
+    body.mcl-custom-admin.mcl-theme-system #wpbody a:not(.button):not(.page-numbers):not(.nav-tab):not(.row-actions a):hover {
+        color: var(--mcl-accent-hover) !important;
+    }
+
+    body.mcl-custom-admin.mcl-theme-system #wpbody .description,
+    body.mcl-custom-admin.mcl-theme-system #wpbody p.description,
+    body.mcl-custom-admin.mcl-theme-system #wpbody span.description,
+    body.mcl-custom-admin.mcl-theme-system #wpbody .text-muted,
+    body.mcl-custom-admin.mcl-theme-system #wpbody .help,
+    body.mcl-custom-admin.mcl-theme-system #wpbody .post-state {
+        color: var(--mcl-text-secondary) !important;
+    }
+
+    body.mcl-custom-admin.mcl-theme-system .nav-tab {
+        background: var(--mcl-bg-main) !important;
+        border-color: var(--mcl-border-color) !important;
+        color: var(--mcl-text-secondary) !important;
+    }
+
+    body.mcl-custom-admin.mcl-theme-system .nav-tab-active,
+    body.mcl-custom-admin.mcl-theme-system .nav-tab:hover {
+        background: var(--mcl-bg-content) !important;
+        color: var(--mcl-text-primary) !important;
+        border-bottom-color: var(--mcl-bg-content) !important;
     }
 }
