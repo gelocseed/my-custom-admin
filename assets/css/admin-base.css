@@ -98,7 +98,7 @@ body.mcl-custom-admin #wpadminbar a.ab-item {
 
 body.mcl-custom-admin #wpadminbar .quicklinks li:hover > .ab-item,
 body.mcl-custom-admin #wpadminbar .quicklinks li.hover > .ab-item {
-    background: var(--mcl-accent-bg) !important;
+    background: transparent !important;
     color: var(--mcl-accent-color) !important;
 }
 
@@ -146,7 +146,7 @@ body.mcl-custom-admin #wpadminbar .ab-sub-wrapper * {
 
 body.mcl-custom-admin #wpadminbar .ab-sub-wrapper a.ab-item:hover {
     color: var(--mcl-accent-color) !important;
-    background: var(--mcl-accent-bg) !important;
+    background: transparent !important;
 }
 
 /* ==========================================================================
@@ -201,26 +201,27 @@ body.mcl-custom-admin #adminmenu .wp-menu-image {
     justify-content: center;
     width: 24px !important;
     height: 24px !important;
-    margin-right: 6px !important; /* Reduced margin */
+    margin-right: 5px !important; /* Reduced margin */
     float: none !important;
 }
 
 body.mcl-custom-admin #adminmenu div.wp-menu-image:before {
-    color: var(--mcl-text-secondary) !important;
+    color: transparent !important;
+    -webkit-text-stroke: 1px var(--mcl-text-secondary) !important;
     transition: var(--mcl-transition);
     padding: 0 !important;
     font-size: 17px !important; /* Slightly smaller for thin outline effect */
     opacity: 0.8;
 }
 
-/* Hover and active states (contrast-fix: background changes to solid accent and text/icon turns white) */
+/* Hover and active states (no background color, only text/stroke turns into accent color) */
 body.mcl-custom-admin #adminmenu li > a:hover,
 body.mcl-custom-admin #adminmenu li:hover > a,
 body.mcl-custom-admin #adminmenu li.wp-has-current-submenu > a:hover,
 body.mcl-custom-admin #adminmenu li.current > a,
 body.mcl-custom-admin #adminmenu li.wp-has-current-submenu.wp-menu-open > a {
-    background: var(--mcl-accent-color) !important;
-    color: #ffffff !important;
+    background: transparent !important;
+    color: var(--mcl-accent-color) !important;
 }
 
 body.mcl-custom-admin #adminmenu li > a:hover div.wp-menu-image:before,
@@ -228,17 +229,30 @@ body.mcl-custom-admin #adminmenu li:hover div.wp-menu-image:before,
 body.mcl-custom-admin #adminmenu li.wp-has-current-submenu > a:hover div.wp-menu-image:before,
 body.mcl-custom-admin #adminmenu li.current div.wp-menu-image:before,
 body.mcl-custom-admin #adminmenu li.wp-has-current-submenu.wp-menu-open div.wp-menu-image:before {
-    color: #ffffff !important;
+    color: transparent !important;
+    -webkit-text-stroke-color: var(--mcl-accent-color) !important;
 }
 
 /* Collapsed active menu (not open but current parent) */
 body.mcl-custom-admin #adminmenu li.wp-has-current-submenu:not(.wp-menu-open) > a {
-    background: var(--mcl-accent-bg) !important;
+    background: transparent !important;
     color: var(--mcl-accent-color) !important;
 }
 
 body.mcl-custom-admin #adminmenu li.wp-has-current-submenu:not(.wp-menu-open) div.wp-menu-image:before {
-    color: var(--mcl-accent-color) !important;
+    color: transparent !important;
+    -webkit-text-stroke-color: var(--mcl-accent-color) !important;
+}
+
+/* Sidebar top-level text transition and shift */
+body.mcl-custom-admin #adminmenu li a .wp-menu-name {
+    display: inline-block !important;
+    transition: var(--mcl-transition) !important;
+}
+
+body.mcl-custom-admin #adminmenu li > a:hover .wp-menu-name,
+body.mcl-custom-admin #adminmenu li:hover > a .wp-menu-name {
+    transform: translateX(5px) !important;
 }
 
 /* Folded / Collapsed menu items spacing */
@@ -252,9 +266,11 @@ body.mcl-custom-admin.folded #adminmenu .wp-menu-image {
 }
 
 /* Fly-out submenus (folded state, hover fly-outs, etc.) with solid, opaque backgrounds and neat shadows */
+/* Fly-out submenus (only folded, or inactive hover submenus when expanded - preventing active inline menu flicker) */
 body.mcl-custom-admin.folded #adminmenu li.wp-has-submenu:hover .wp-submenu,
-body.mcl-custom-admin #adminmenu li.wp-has-submenu.hover .wp-submenu,
-body.mcl-custom-admin #adminmenu li.wp-has-submenu:hover .wp-submenu {
+body.mcl-custom-admin.folded #adminmenu li.wp-has-submenu.hover .wp-submenu,
+body.mcl-custom-admin:not(.folded) #adminmenu li.wp-has-submenu:not(.wp-has-current-submenu):not(.wp-menu-open):hover .wp-submenu,
+body.mcl-custom-admin:not(.folded) #adminmenu li.wp-has-submenu:not(.wp-has-current-submenu):not(.wp-menu-open).hover .wp-submenu {
     position: absolute !important;
     left: calc(var(--mcl-menu-width) - 10px) !important;
     top: 0 !important;
@@ -267,7 +283,8 @@ body.mcl-custom-admin #adminmenu li.wp-has-submenu:hover .wp-submenu {
     z-index: 99999 !important;
 }
 
-body.mcl-custom-admin.folded #adminmenu li.wp-has-submenu:hover .wp-submenu {
+body.mcl-custom-admin.folded #adminmenu li.wp-has-submenu:hover .wp-submenu,
+body.mcl-custom-admin.folded #adminmenu li.wp-has-submenu.hover .wp-submenu {
     left: 64px !important;
 }
 
@@ -293,7 +310,8 @@ body.mcl-custom-admin #adminmenu .wp-submenu a {
 
 body.mcl-custom-admin #adminmenu .wp-submenu a:hover {
     color: var(--mcl-accent-color) !important;
-    background: var(--mcl-accent-bg) !important;
+    background: transparent !important;
+    padding-left: 17px !important; /* shift by 5px */
 }
 
 /* Separators */

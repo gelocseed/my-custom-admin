@@ -58,6 +58,14 @@ my-custom-admin/
 
 ## 🔄 Changelog
 
+### Version 1.0.2
+*   **🐛 Fixed Submenu Flicker**: Resolved the rapid jumping of submenus on expanded sidebar hover by restricting absolute position flyouts to collapsed (`.folded`) or inactive menus.
+*   **🎨 Flat Hover Refinements**: Removed all solid background fills on hover/active states of sidebar and admin bar navigation items, switching to a color-only font/stroke accentuation.
+*   **🌀 Text Translation**: Added smooth 5px rightward shifts (`transform: translateX(5px)`) for parent menu items and padding transitions for submenu links on hover.
+*   **🌐 Inter Font Integration**: Added global typography override to use the **Inter** font family imported from Google Fonts.
+*   **📏 Tightened Layout Spacing**: Reduced spacing between icons and menu text to `5px` for a cleaner, unified alignment.
+*   **🖋️ Outline-Only Icons**: Replaced solid-filled Dashicons with transparent fills and crisp `1px` outlines (`-webkit-text-stroke`), providing a cleaner, premium visual weight.
+
 ### Version 1.0.1
 *   **🚀 Transitioned to App Shell Layout**: Replaced the floating macOS style with a flat container design. Both the top admin bar and the left sidebar now extend flush to the margins and merge with the background.
 *   **💳 Containerized Workspace Card**: Encapsulated the WordPress workspace area (`#wpbody-content`) in a beautiful tablet card featuring a `16px` border-radius, thin border outlines, and distinct white/dark-graphite backings.
